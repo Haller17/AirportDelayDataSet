@@ -988,7 +988,7 @@ def insights_page(df: pd.DataFrame):
     )
 
 st.sidebar.markdown("---")
-csv_path = st.sidebar.text_input("CSV path", value=CSV_DEFAULT)
+
 
 try:
     df = get_data(csv_path)
