@@ -991,7 +991,6 @@ st.sidebar.markdown("---")
 
 
 try:
-    df = get_data(csv_path)
 
     if app_mode == "Home":
         home_page(df)
