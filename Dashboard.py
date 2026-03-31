@@ -38,7 +38,12 @@ app_mode = st.sidebar.radio(
     ]
 )
 
-CSV_DEFAULT = "Airline_Delay_Cause.csv"
+@st.cache_data
+def load_data():
+    url = "https://drive.google.com/uc?export=download&id=1NRc9MdpYlry15fWcIEX_sRV4mTZFORrd"
+    return pd.read_csv(url)
+
+df = load_data()
 
 DISPLAY_NAMES = {
     "year": "Year",
