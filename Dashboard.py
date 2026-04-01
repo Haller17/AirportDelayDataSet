@@ -300,12 +300,11 @@ def eda_page(df: pd.DataFrame):
     else:
         eda_df = df[df["year"] == selected_year].copy()
 
-    # Units toggle
+    # Units button
     show_hours = st.checkbox("Display delay values in hours", value=False)
     unit_label = "Hours" if show_hours else "Minutes"
     conversion = 1 / 60 if show_hours else 1
 
-    # Apply conversion to delay columns
     delay_cols = [
         "arr_delay",
         "carrier_delay",
@@ -338,7 +337,7 @@ def eda_page(df: pd.DataFrame):
         ]
     )
 
-    # ---------------- TAB 1: SCATTER ----------------
+    # Scatter Plot
     with tab1:
         st.subheader("Interactive Scatter Plot")
 
@@ -378,7 +377,7 @@ def eda_page(df: pd.DataFrame):
         )
         st.plotly_chart(fig_scatter, use_container_width=True)
 
-    # ---------------- TAB 2: BAR CHART ----------------
+    # Bar Chart
     with tab2:
         st.subheader("Bar Chart Comparison")
 
@@ -422,7 +421,7 @@ def eda_page(df: pd.DataFrame):
 
         st.plotly_chart(fig_bar, use_container_width=True)
 
-    # ---------------- TAB 3: LINE TRENDS ----------------
+    # Line Chart
     with tab3:
         st.subheader("Line Trend Analysis")
 
@@ -456,7 +455,7 @@ def eda_page(df: pd.DataFrame):
 
         st.plotly_chart(fig_line, use_container_width=True)
 
-    # ---------------- TAB 4: DELAY CAUSE BREAKDOWN ----------------
+    # Delay cuase
     with tab4:
         st.subheader("Delay Cause Breakdown")
 
@@ -481,7 +480,7 @@ def eda_page(df: pd.DataFrame):
         )
         st.plotly_chart(fig_cause_bar, use_container_width=True)
 
-    # ---------------- TAB 5: HEATMAP ----------------
+    # HeatMap
     with tab5:
         st.subheader("Delay Heatmap")
 
@@ -796,7 +795,7 @@ def predictions_page(df: pd.DataFrame):
 
     delay_rate = (total_delayed_flights / total_flights) * 100 if total_flights > 0 else 0
 
-    # Severity based on delay rate + historical delay totals
+    # Severity based on delay rate
     if delay_rate < 15:
         severity = "Low"
     elif delay_rate < 35:
